@@ -61,7 +61,9 @@ namespace AFPS.Players
         /// <param name="state"></param>
         public async void SetAnimationState(ControlState state)
         {
-            await new WaitUntil(() => m_SwitchingState == false);
+            if (m_SwitchingState == true)
+                return;
+
             m_SwitchingState = true;
 
             switch (state)
