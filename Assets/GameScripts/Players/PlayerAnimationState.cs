@@ -13,14 +13,15 @@ namespace AFPS.Players
 
     public class PlayerAnimationState : MonoBehaviour, IInitalize
     {
-        private const string VELO_X = "velo_x";
-        private const string VELO_Z = "velo_z";
-        private const string SPEED = "speed";
-        private const string ACTION = "action";
+        private int VELO_X = Animator.StringToHash("velo_x");
+        private int VELO_Z = Animator.StringToHash("velo_z");
+        private int SPEED = Animator.StringToHash("speed");
+        private int ACTION = Animator.StringToHash("action");
 
         public CharacterController CharacterController { get; private set; }
         public Animator Animator { get; private set; }
 
+        private bool m_SwitchingState;
         public ControlState State;
 
         #region IInitalize
@@ -58,8 +59,11 @@ namespace AFPS.Players
         /// Stand, Prone, Crounch
         /// </summary>
         /// <param name="state"></param>
-        public void SetAnimationState(ControlState state)
+        public async void SetAnimationState(ControlState state)
         {
+            await new WaitUntil(() => m_SwitchingState == false);
+            m_SwitchingState = true;
+
             switch (state)
             {
                 case ControlState.Prone:
@@ -68,8 +72,11 @@ namespace AFPS.Players
 
                 case ControlState.Crounch:
                     Crounch();
-                    break; 
+                    break;
             }
+
+            await new WaitForSeconds(2f);
+            m_SwitchingState = false;
         }
 
         private void Prone()
