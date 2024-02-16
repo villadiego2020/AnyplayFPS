@@ -39,8 +39,8 @@ namespace AFPS.Players
             CameraHandler.name = nameof(CameraHandler);
             await new WaitForEndOfFrame();
 
-            UIManager.UINetwork.OnHostClickEvent = GameplayNetwork.OnClickServer;
-            UIManager.UINetwork.OnClientClickEvent = GameplayNetwork.OnClickClient;
+            UIManager.UINetwork.OnHostClickEvent = GameplayNetwork.TryConnectServer;
+            UIManager.UINetwork.OnClientClickEvent = GameplayNetwork.TryConnectClient;
             await new WaitForEndOfFrame();
 
 

@@ -103,13 +103,13 @@ MonoBehaviour:
   m_Setting:
     MovemtActions:
     - State: 0
-      MoveSpeed: 4
+      MoveSpeed: 2.5
     - State: 1
-      MoveSpeed: 1
+      MoveSpeed: 0.5
     - State: 2
-      MoveSpeed: 2
-    MotionSmoothTime: 1
-    Acceleration: 5
+      MoveSpeed: 1
+    MotionSmoothTime: 100
+    Acceleration: 50
   m_CurrentSpeed: 0
 --- !u!114 &97958518943916139
 MonoBehaviour:

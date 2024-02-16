@@ -28,27 +28,19 @@ namespace AFPS.Cores
 
             NetworkManager.ServerManager.OnServerConnectionState += OnServerConnectionState;
             NetworkManager.ClientManager.OnClientConnectionState += OnClientConnectionState;
-            NetworkManager.ClientManager.OnConnectedClients += Test;
-        }
-
-        private void Test(ConnectedClientsArgs args)
-        {
-
         }
 
         private void OnServerConnectionState(ServerConnectionStateArgs obj)
         {
             m_ServerState = obj.ConnectionState;
-            Debug.Log("Server Connection State: " + m_ServerState);
         }
 
         private void OnClientConnectionState(ClientConnectionStateArgs obj)
         {
             m_ClientState = obj.ConnectionState;
-            Debug.Log("Client Connection State: " +  m_ClientState);
         }
 
-        public void OnClickClient()
+        public void TryConnectClient()
         {
             if (NetworkManager == null)
                 return;
@@ -63,7 +55,7 @@ namespace AFPS.Cores
             }
         }
 
-        public void OnClickServer()
+        public void TryConnectServer()
         {
             if (NetworkManager == null)
                 return;
